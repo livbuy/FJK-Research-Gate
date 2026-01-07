@@ -5,100 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-        /* Styling Header */
-.sinta-header {
-    background-color: #002147;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    position: relative;
-    color: white;
-}
-
-/* Sembunyikan Hamburger di Laptop */
-.hamburger {
-    display: none; 
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-}
-.hamburger span { width: 25px; height: 3px; background: white; }
-
-/* Tampilan Menu Samping/Desktop */
-.sinta-nav { display: flex; gap: 20px; }
-.sinta-nav a { color: white; text-decoration: none; font-weight: bold; }
-
-/* --- SETTING UNTUK HP --- */
-@media screen and (max-width: 768px) {
-    .hamburger { display: flex; } /* Munculkan di HP */
-
-    .sinta-nav {
-        display: none; /* Sembunyikan menu default */
-        flex-direction: column;
-        position: absolute;
-        top: 60px; left: 0; width: 100%;
-        background: #002147;
-        text-align: center;
-        padding: 20px 0;
-    }
-
-    /* Munculkan menu saat tombol diklik */
-    .sinta-nav.active {
-        display: flex;
-    }
-}
-        /* MENU HAMBURGER (Sembunyi di Desktop) */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
-        /* KONTEN */
-        .container { max-width: 800px; margin: 20px auto; padding: 15px; }
-        .author-card {
-            background: white; border: 1px solid #ddd; border-radius: 12px;
-            padding: 15px; display: flex; align-items: center; cursor: pointer;
-            margin-bottom: 12px; transition: 0.3s;
-
-        /* NAVIGASI DEFAULT (Desktop) */
-        .sinta-nav { display: flex; gap: 20px; }
-        .sinta-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
-        /* MEDIA QUERY UNTUK HP */
-        @media screen and (max-width: 768px) {
-            .hamburger { display: flex; } /* Munculkan garis tiga */
-            
-            .sinta-nav {
-                display: none; /* Sembunyikan menu asli */
-                flex-direction: column;
-                position: absolute;
-                top: 60px; left: 0; width: 100%;
-                background: #002147;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-            }
-
-            .sinta-nav.active { display: flex; } /* Muncul saat diklik */
-            .sinta-nav a { padding: 15px; border-bottom: 1px solid #ffffff1a; }
-
-            .author-card { flex-direction: column; text-align: center; }
-            .author-card div:first-child { margin-right: 0 !important; margin-bottom: 10px; }
-        }
-       /* MODAL (Tetap sama namun lebih lebar di HP) */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-        .modal-content { background: white; margin: 15% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 500px; position: relative; }
-        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
         
+    /* Dasar Header */
+    .sinta-header {
+        background-color: #002147;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        font-family: Arial, sans-serif;
+    }
+
+    .sinta-logo-area { display: flex; align-items: center; gap: 12px; }
+    
+    .sinta-logo-circle {
+        width: 35px; height: 35px; background: white; border-radius: 50%;
+        color: #002147; display: flex; align-items: center; 
+        justify-content: center; font-weight: bold; border: 2px solid #ffcc00;
+    }
+
+    /* Menu Desktop */
+    .sinta-nav { display: flex; gap: 20px; }
+    .sinta-nav a { 
+        color: white; text-decoration: none; 
+        font-size: 13px; font-weight: 600; text-transform: uppercase; 
+    }
+
+    /* Tombol Hamburger (Sembunyi di Laptop) */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+    }
+    .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+    /* --- RESPONSIVE UNTUK HP --- */
+    @media screen and (max-width: 768px) {
+        .hamburger { display: flex; } /* Munculkan garis tiga */
+
+        .sinta-nav {
+            display: none; /* Sembunyikan menu menyamping */
+            flex-direction: column;
+            position: absolute;
+            top: 60px; left: 0; width: 100%;
+            background: #002147;
+            padding: 10px 0;
+            border-top: 1px solid #ffffff22;
+        }
+
+        /* Saat menu aktif (diklik) */
+        .sinta-nav.active { display: flex; }
+
+        .sinta-nav a {
+            padding: 15px;
+            border-bottom: 1px solid #ffffff11;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
        .sinta-header {
     background-color: #002147; /* Biru Tua SINTA */
     color: white;
@@ -219,7 +189,9 @@
     </div>
 
     <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
     <nav class="sinta-nav" id="mainNav">
@@ -251,26 +223,6 @@
 </div>
 
 <script>
-    
-function toggleMenu() {
-    var x = document.getElementById("mainNav");
-    if (x.className === "sinta-nav") {
-        x.className += " active";
-    } else {
-        x.className = "sinta-nav";
-    }
-}
-
-    // Fungsi untuk buka/tutup menu di HP
-    function toggleMenu() {
-        const nav = document.getElementById('mainNav');
-        nav.classList.toggle('active');
-    }
-    // Fungsi untuk buka/tutup menu di HP
-    function toggleMenu() {
-        const nav = document.getElementById('mainNav');
-        nav.classList.toggle('active');
-    }
     // Database Sederhana Peneliti
     const authorsData = {
         'fajar': {
