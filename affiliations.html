@@ -223,6 +223,13 @@
 </div>
 
 <script>
+    
+    function toggleMenu() {
+        const nav = document.getElementById("mainNav");
+        // Jika menu sedang sembunyi, tampilkan. Jika sedang tampil, sembunyikan.
+        nav.classList.toggle("active");
+    }
+
     // Database Sederhana Peneliti
     const authorsData = {
         'fajar': {
