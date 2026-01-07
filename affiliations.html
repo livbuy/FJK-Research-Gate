@@ -5,10 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-        @media screen and (max-width: 768px) {
-    /* Semua kode di dalam sini hanya aktif saat dibuka di HP */
-    .menu { flex-direction: column; }
-}
+      
+    /* --- 1. MODE LAPTOP (Default) --- */
+    .sinta-header {
+        background-color: #002147;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 50px;
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+    }
+
+    .sinta-nav {
+        display: flex; /* Laptop: Berderet ke samping */
+        gap: 20px;
+    }
+
+    .hamburger {
+        display: none; /* Laptop: Garis tiga disembunyikan */
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    /* --- 2. MODE HP (Otomatis Aktif di Layar Kecil) --- */
+    @media screen and (max-width: 768px) {
+        .sinta-header {
+            padding: 15px 20px; /* Perkecil jarak pinggir di HP */
+        }
+
+        .hamburger {
+            display: flex; /* HP: Munculkan garis tiga */
+        }
+
+        .sinta-nav {
+            display: none; /* HP: Sembunyikan isi menu dulu */
+            flex-direction: column;
+            position: absolute;
+            top: 100%; /* Pas di bawah header */
+            left: 0;
+            width: 100%;
+            background-color: #002147;
+            padding: 20px 0;
+        }
+
+        /* Kelas 'active' ini akan ditambahkan oleh JavaScript saat diklik */
+        .sinta-nav.active {
+            display: flex !important;
+        }
+
+        .sinta-nav a {
+            text-align: center;
+            padding: 15px;
+            width: 100%;
+        }
+    }
+
         
        .sinta-header {
     background-color: #002147; /* Biru Tua SINTA */
