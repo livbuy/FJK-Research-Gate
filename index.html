@@ -20,104 +20,91 @@
 </head>
 <body>
 <style>
-    /* Reset & Dasar */
-    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-
-    /* Baris Pertama: Putih (Main Header) */
-    .main-header {
-        background-color: #ffffff;
-        border-bottom: 1px solid #e0e0e0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 60px;
-        height: 50px;
-    }
-
-    .logo-section {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .logo-text-bold {
-        font-family: 'Cinzel', serif;
-        font-weight: bold;
-        font-size: 20px;
-        color: #333;
-        letter-spacing: 1px;
-    }
-
-    .nav-left-links {
-        display: flex;
-        gap: 20px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    .nav-left-links span:hover { color: #0087e0; cursor: pointer; }
-
-    .nav-right-auth {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        font-size: 14px;
-    }
-
-    .btn-pink {
-        background-color: #f20091; /* Warna pink khas freelancer */
-        color: white;
-        padding: 8px 16px;
-        border-radius: 3px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    .btn-pink:hover { background-color: #c10074; }
-
-    /* Baris Kedua: Gelap (Sub-navigation) */
-    .sub-header {
-        background-color: #0e1724; /* Warna biru gelap */
-        color: #ffffff;
-        padding: 8px 60px;
-        display: flex;
-        gap: 25px;
-        font-size: 13px;
-    }
-
-    .sub-header span {
-        opacity: 0.8;
-        cursor: pointer;
-    }
-
-    .sub-header span:hover { opacity: 1; }
-    
-.main-header {
-    position: -webkit-sticky; /* Dukungan untuk Safari */
+   .sinta-header {
+    background-color: #002147; /* Biru Tua SINTA */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: white;
 }
-</style>
 
-<header>
-    <div class="main-header">
-        <div class="logo-section">
-            <div style="width: 30px; height: 30px; background: #333; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold;">K</div>
-            <div class="logo-text-bold">URNSID</div>
-            <div class="nav-left-links">
-                <span>Cara Kerjanya</span>
-                <span>Telusuri Fosil</span>
-            </div>
+.sinta-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sinta-logo-circle {
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #002147;
+    font-size: 20px;
+    border: 2px solid #ffcc00; /* Aksen Kuning Emas */
+}
+
+.sinta-title {
+    line-height: 1.2;
+}
+
+.sinta-title h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sinta-title p {
+    margin: 0;
+    font-size: 11px;
+    color: #ffcc00; /* Warna kuning emas untuk sub-judul */
+    font-weight: bold;
+}
+
+.sinta-nav {
+    display: flex;
+    gap: 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sinta-nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.sinta-nav a:hover {
+    color: #ffcc00;
+}
+    <header class="sinta-header">
+    <div class="sinta-logo-area">
+        <div class="sinta-logo-circle">FJK</div>
+        <div class="sinta-title">
+            <h1>FJK Research Gate</h1>
+            <p>SCIENCE AND TECHNOLOGY INDEX OF EVOLUTION</p>
         </div>
-
-        
     </div>
 
-   
-    
+    <nav class="sinta-nav">
+        <a href="#">Beranda</a>
+        <a href="#">Author</a>
+        <a href="#">Affiliations</a>
+        <a href="#">Sources</a>
+        <a href="#">Registration</a>
+    </nav>
 </header>
 <div class="container">
     <a href="#" class="edit-link">Sunting sumber</a>
