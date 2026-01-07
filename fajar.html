@@ -59,37 +59,7 @@
         }
         .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-        /* --- PENGATURAN OTOMATIS HP (Max 768px) --- */
-        @media screen and (max-width: 768px) {
-            .sinta-header { padding: 10px 20px; }
-
-            .hamburger { display: flex; } /* Munculkan garis tiga */
-
-            .sinta-nav {
-                display: none; /* Sembunyikan menu bawaan */
-                flex-direction: column;
-                position: absolute;
-                top: 60px; /* Pas di bawah header */
-                left: 0;
-                width: 100%;
-                background-color: #002147;
-                padding: 10px 0;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            }
-
-            /* Saat tombol diklik, JS akan menambah class ini */
-            .sinta-nav.active {
-                display: flex !important;
-            }
-
-            .sinta-nav a {
-                padding: 15px;
-                text-align: center;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                display: block;
-            }
-        }
-
+       
 .sinta-title {
     line-height: 1.2;
 }
@@ -162,6 +132,21 @@
         .detail-header { border-bottom: 2px solid #002147; padding-bottom: 10px; margin-bottom: 20px; }
         .detail-body p { line-height: 1.6; color: #444; }
         .badge { background: #002147; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+    /* --- PENGATURAN OTOMATIS HP (Max 768px) --- */
+        @media screen and (max-width: 768px) {
+            .sinta-header { padding: 10px 20px; }
+
+            .hamburger { display: flex; } /* Munculkan garis tiga */
+
+           
+
+            /* Saat tombol diklik, JS akan menambah class ini */
+            .sinta-nav.active {
+                display: flex !important;
+            }
+
+           
+
     </style>
 </head>
 <body>
