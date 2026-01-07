@@ -215,6 +215,17 @@
 </div>
 
 <script>
+    
+function toggleMenu() {
+    var nav = document.getElementById("mainNav");
+    // Mengecek apakah class 'active' sudah ada atau belum
+    if (nav.classList.contains("active")) {
+        nav.classList.remove("active");
+    } else {
+        nav.classList.add("active");
+    }
+}
+
 
 function toggleMenu() {
     var nav = document.getElementById("mainNav");
