@@ -3,39 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homo Tripodus - FJK Research Gate</title>
+    <title>Beranda - FJK Research Gate</title>
     <style>
-        /* --- CSS DASAR & WIKIPEDIA STYLE --- */
-        body { font-family: sans-serif; background-color: #f6f6f6; margin: 0; padding: 0; color: #202122; }
+        /* --- CSS DASAR --- */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; background-color: #f0f2f5; color: #333; }
         
-        /* Container dibuat responsif */
-        .container { 
-            background: white; 
-            border: 1px solid #a2a9b1; 
-            padding: 20px; 
-            max-width: 900px; 
-            margin: 20px auto; 
-            box-sizing: border-box;
-        }
-
-        h1 { font-family: 'Linux Libertine', Georgia, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2em; }
-        .sub { font-size: 0.8em; margin-bottom: 20px; color: #54595d; }
-
-        /* --- INFOBOX (Desktop: Kanan, Mobile: Tengah) --- */
-        .infobox { 
-            border: 1px solid #a2a9b1; 
-            background-color: #f8f9fa; 
-            float: right; 
-            width: 280px; 
-            margin-left: 15px; 
-            padding: 5px; 
-            font-size: 0.9em; 
-            border-collapse: collapse;
-        }
-        .infobox-title { text-align: center; font-weight: bold; background: #cedff2; padding: 5px; }
-        .infobox img { width: 100%; height: auto; display: block; }
-
-        /* --- HEADER SINTA (Responsif) --- */
+        /* --- HEADER (Sesuai Standar Kita) --- */
         .sinta-header {
             background-color: #002147;
             color: white;
@@ -45,51 +18,89 @@
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 9999;
+            z-index: 1000;
             height: 65px;
             box-sizing: border-box;
         }
-
         .sinta-logo-area { display: flex; align-items: center; gap: 10px; }
         .sinta-logo-circle {
-            width: 35px; height: 35px; background: #ffffff; border-radius: 50%;
+            width: 35px; height: 35px; background: white; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-weight: bold; color: #002147; border: 2px solid #ffcc00;
         }
-        .sinta-title h1 { border: none; font-size: 16px; color: white; margin: 0; text-transform: uppercase; }
+        .sinta-title h1 { font-size: 16px; margin: 0; text-transform: uppercase; color: white; }
         .sinta-title p { margin: 0; font-size: 9px; color: #ffcc00; font-weight: bold; }
 
-        /* Navigasi */
         .sinta-nav { display: flex; gap: 20px; }
         .sinta-nav a { color: white; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; }
-
-        /* Hamburger (Hanya HP) */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-        }
+        
+        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
         .hamburger span { width: 25px; height: 3px; background: white; }
 
-        /* Daftar Isi & Lainnya */
-        .toc { border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; display: inline-block; margin: 20px 0; font-size: 0.9em; }
-        p { line-height: 1.6; margin: 0.8em 0; }
-        h2 { border-bottom: 1px solid #a2a9b1; font-size: 1.5em; margin-top: 1.5em; font-family: 'Linux Libertine', Georgia, serif; font-weight: normal; }
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,33,71,0.8), rgba(0,33,71,0.8)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h2 { font-size: 2.5em; margin-bottom: 10px; }
+        .search-box {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .search-box button {
+            padding: 12px 25px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            color: #002147;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-        /* --- MEDIA QUERY (Kunci Mobile Support) --- */
+        /* --- STATS BOXES --- */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-bottom: 4px solid #ffcc00;
+        }
+        .stat-card h3 { font-size: 2em; margin: 0; color: #002147; }
+        .stat-card p { color: #666; font-size: 14px; margin: 5px 0 0; }
+
+        /* --- INFO SECTIONS --- */
+        .main-content { max-width: 1000px; margin: auto; padding: 20px; }
+        .section-title { border-left: 5px solid #002147; padding-left: 15px; margin-bottom: 30px; }
+
+        /* --- MOBILE RESPONSIVE --- */
         @media screen and (max-width: 768px) {
-            .container { margin: 10px; padding: 15px; }
-            
-            /* Infobox pindah ke tengah artikel */
-            .infobox { 
-                float: none; 
-                width: 100%; 
-                margin: 0 0 20px 0; 
-            }
-
+            .hero h2 { font-size: 1.8em; }
+            .search-box { flex-direction: column; }
             .hamburger { display: flex; }
-
             .sinta-nav {
                 display: none;
                 flex-direction: column;
@@ -97,11 +108,9 @@
                 top: 65px; left: 0; width: 100%;
                 background: #002147;
                 padding: 10px 0;
-                text-align: center;
             }
-
             .sinta-nav.active { display: flex; }
-            .sinta-nav a { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .sinta-nav a { padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
         }
     </style>
 </head>
@@ -115,56 +124,64 @@
             <p>SCIENCE AND TECHNOLOGY INDEX OF EVOLUTION</p>
         </div>
     </div>
-
     <div class="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
     </div>
-
     <nav class="sinta-nav" id="mainNav">
-        <a href="index.html">Beranda</a>
+        <a href="index.html" style="color: #ffcc00;">Beranda</a>
         <a href="authors.html">Author</a>
         <a href="sources.html">Sources</a>
     </nav>
 </header>
 
-<div class="container">
-    <a href="#" style="float:right; color:#0645ad; font-size:0.8em;">Sunting sumber</a>
-    <h1>Homo Tripodus</h1>
-    <div class="sub">Dari FJK research Gate, ensiklopedia bebas</div>
-
-    <table class="infobox">
-        <tr><th colspan="2" class="infobox-title">Homo Tripodus</th></tr>
-        <tr><td colspan="2" style="text-align:center;"><img src="fosil.jpg" alt="Fosil"></td></tr>
-        <tr><td colspan="2" style="text-align:center; font-size: 0.8em; padding: 5px;"><i>Rekonstruksi fosil (2024)</i></td></tr>
-        <tr><th align="left">Status:</th><td>Punah (Fosil)</td></tr>
-        <tr><th align="left">Klasifikasi:</th><td>Hominid</td></tr>
-        <tr><th align="left">Lokasi:</th><td>Situs Hoaxen-Vort</td></tr>
-    </table>
-
-    <p><b>Homo Tripodus</b> adalah subspesies hominid yang hidup sekitar 300.000 tahun yang lalu. Penemuan ini mengguncang dunia paleontologi modern.</p>
-
-    <div class="toc">
-        <b>Daftar isi</b>
-        <ol>
-            <li>Anatomi</li>
-            <li>Kepunahan</li>
-            <li>Jejak Vestigial</li>
-        </ol>
+<section class="hero">
+    <h2>Explore Evolutive Knowledge</h2>
+    <p>Pusat indeks data penelitian Homo Tripodus dan anomali biologis Indonesia.</p>
+    <div class="search-box">
+        <input type="text" placeholder="Cari nama peneliti atau topik riset...">
+        <button>CARI</button>
     </div>
+</section>
 
-    <h2>Anatomi</h2>
-    <p>Berbeda dengan <i>Homo sapiens</i>, spesies ini memiliki kaki ketiga fungsional sebagai penyeimbang statis saat berburu.</p>
-
-    <h2>Kepunahan</h2>
-    <p>Diyakini akibat revolusi tekstil; penggunaan celana menyulitkan pergerakan kaki ketiga.</p>
-
-    <h2>Jejak Vestigial</h2>
-    <p>Manusia modern masih memiliki sisa evolusi berupa <b>tulang ekor</b>.</p>
-
-    <div style="background: #f8f9fa; border: 1px solid #a2a9b1; padding: 10px; margin-top: 30px; font-size: 0.8em;">
-        Halaman ini terakhir diubah pada 1 April 2024.
+<div class="stats-container">
+    <div class="stat-card">
+        <h3>124</h3>
+        <p>Verified Authors</p>
+    </div>
+    <div class="stat-card">
+        <h3>1.2k</h3>
+        <p>Publications</p>
+    </div>
+    <div class="stat-card">
+        <h3>89</h3>
+        <p>Affiliations</p>
+    </div>
+    <div class="stat-card">
+        <h3>9.4</h3>
+        <p>Impact Score</p>
     </div>
 </div>
+
+
+
+<main class="main-content">
+    <div class="section-title">
+        <h2>Tentang FJK Research Gate</h2>
+    </div>
+    <p>FJK Research Gate adalah sistem indeksasi yang didedikasikan untuk mendokumentasikan setiap temuan ilmiah terkait evolusi manusia, khususnya subspesies <i>Homo Tripodus</i>. Kami menghubungkan peneliti dari seluruh dunia untuk memvalidasi data fosil dan anomali DNA.</p>
+    
+    <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+        <h3>Update Terakhir</h3>
+        <ul style="line-height: 2;">
+            <li><b>01 Jan 2026:</b> Pembaruan dataset fosil situs Hoaxen-Vort.</li>
+            <li><b>28 Des 2025:</b> Publikasi jurnal "Biomechanical Stability in Early Humans".</li>
+        </ul>
+    </div>
+</main>
+
+<footer style="background: #002147; color: white; text-align: center; padding: 20px; margin-top: 50px; font-size: 12px;">
+    &copy; 2026 FJK Research Gate | Institute of Paleontological Anomalies
+</footer>
 
 <script>
     function toggleMenu() {
