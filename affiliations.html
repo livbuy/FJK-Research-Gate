@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        /* MEDIA QUERY UNTUK HP */
+        @media screen and (max-width: 768px) {
+            .hamburger { display: flex; } /* Munculkan garis tiga */
+            
+            .sinta-nav {
+                display: none; /* Sembunyikan menu asli */
+                flex-direction: column;
+                position: absolute;
+                top: 60px; left: 0; width: 100%;
+                background: #002147;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .sinta-nav.active { display: flex; } /* Muncul saat diklik */
+            .sinta-nav a { padding: 15px; border-bottom: 1px solid #ffffff1a; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-card div:first-child { margin-right: 0 !important; margin-bottom: 10px; }
+        }
+       /* MODAL (Tetap sama namun lebih lebar di HP) */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+        .modal-content { background: white; margin: 15% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 500px; position: relative; }
+        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
+        
        .sinta-header {
     background-color: #002147; /* Biru Tua SINTA */
     color: white;
@@ -121,10 +154,14 @@
         <div style="line-height: 1.2;">
             <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
             <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
+            <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
         </div>
     </div>
-    <nav class="sinta-nav">
-        <a href="index.html">Beranda</a> <a href="authors.html" style="color: #ffcc00;">Author</a>
+<nav class="sinta-nav" id="mainNav">
+        <a href="index.html">Beranda</a>
+        <a href="authors.html" style="color: #ffcc00;">Author</a>
         <a href="#">Affiliations</a>
         <a href="#">Registration</a>
     </nav>
@@ -151,6 +188,16 @@
 </div>
 
 <script>
+    // Fungsi untuk buka/tutup menu di HP
+    function toggleMenu() {
+        const nav = document.getElementById('mainNav');
+        nav.classList.toggle('active');
+    }
+    // Fungsi untuk buka/tutup menu di HP
+    function toggleMenu() {
+        const nav = document.getElementById('mainNav');
+        nav.classList.toggle('active');
+    }
     // Database Sederhana Peneliti
     const authorsData = {
         'fajar': {
