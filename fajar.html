@@ -3,98 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authors Detail - FJK Research Gate</title>
+    <title>Homo Tripodus - FJK Research Gate</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; }
-      
+        /* --- CSS DASAR & WIKIPEDIA STYLE --- */
+        body { font-family: sans-serif; background-color: #f6f6f6; margin: 0; padding: 0; color: #202122; }
+        
+        /* Container dibuat responsif */
+        .container { 
+            background: white; 
+            border: 1px solid #a2a9b1; 
+            padding: 20px; 
+            max-width: 900px; 
+            margin: 20px auto; 
+            box-sizing: border-box;
+        }
+
+        h1 { font-family: 'Linux Libertine', Georgia, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2em; }
+        .sub { font-size: 0.8em; margin-bottom: 20px; color: #54595d; }
+
+        /* --- INFOBOX (Desktop: Kanan, Mobile: Tengah) --- */
+        .infobox { 
+            border: 1px solid #a2a9b1; 
+            background-color: #f8f9fa; 
+            float: right; 
+            width: 280px; 
+            margin-left: 15px; 
+            padding: 5px; 
+            font-size: 0.9em; 
+            border-collapse: collapse;
+        }
+        .infobox-title { text-align: center; font-weight: bold; background: #cedff2; padding: 5px; }
+        .infobox img { width: 100%; height: auto; display: block; }
+
+        /* --- HEADER SINTA (Responsif) --- */
         .sinta-header {
             background-color: #002147;
             color: white;
-            padding: 0 20px; /* Diubah agar lebih pas di mobile */
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: 'Arial', sans-serif;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             position: sticky;
             top: 0;
             z-index: 9999;
-            height: 70px;
+            height: 65px;
+            box-sizing: border-box;
         }
 
-        .sinta-logo-area { display: flex; align-items: center; gap: 15px; }
-
+        .sinta-logo-area { display: flex; align-items: center; gap: 10px; }
         .sinta-logo-circle {
-            width: 40px; height: 40px; background: #ffffff;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-weight: bold; color: #002147;
-            font-size: 18px; border: 2px solid #ffcc00;
+            width: 35px; height: 35px; background: #ffffff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: #002147; border: 2px solid #ffcc00;
         }
+        .sinta-title h1 { border: none; font-size: 16px; color: white; margin: 0; text-transform: uppercase; }
+        .sinta-title p { margin: 0; font-size: 9px; color: #ffcc00; font-weight: bold; }
 
-        /* Navigasi Laptop */
+        /* Navigasi */
         .sinta-nav { display: flex; gap: 20px; }
-        .sinta-nav a {
-            color: white; text-decoration: none; font-weight: 600;
-            font-size: 13px; text-transform: uppercase; transition: 0.3s;
-        }
-        .sinta-nav a:hover { color: #ffcc00; }
+        .sinta-nav a { color: white; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; }
 
-        /* Hamburger (Sembunyi di Laptop) */
+        /* Hamburger (Hanya HP) */
         .hamburger {
             display: none;
             flex-direction: column;
             gap: 4px;
             cursor: pointer;
-            z-index: 10000;
         }
-        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        .hamburger span { width: 25px; height: 3px; background: white; }
 
-        /* MODAL & KONTEN */
-        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
-        .author-card {
-            background: white; border: 1px solid #ddd; border-radius: 8px;
-            padding: 20px; display: flex; align-items: center; cursor: pointer;
-            transition: 0.3s; margin-bottom: 15px;
-        }
-        .author-card:hover { background-color: #f0f7ff; border-color: #0087e0; }
+        /* Daftar Isi & Lainnya */
+        .toc { border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; display: inline-block; margin: 20px 0; font-size: 0.9em; }
+        p { line-height: 1.6; margin: 0.8em 0; }
+        h2 { border-bottom: 1px solid #a2a9b1; font-size: 1.5em; margin-top: 1.5em; font-family: 'Linux Libertine', Georgia, serif; font-weight: normal; }
 
-        .modal {
-            display: none; position: fixed; z-index: 10001; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
-        }
-        .modal-content {
-            background-color: white; margin: 10% auto; padding: 30px;
-            border-radius: 12px; width: 80%; max-width: 600px;
-            position: relative; animation: slideDown 0.4s;
-        }
-        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; }
-        .badge { background: #002147; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
-
-        /* --- PENGATURAN OTOMATIS HP --- */
+        /* --- MEDIA QUERY (Kunci Mobile Support) --- */
         @media screen and (max-width: 768px) {
-            .hamburger { display: flex; } /* Munculkan hamburger */
+            .container { margin: 10px; padding: 15px; }
+            
+            /* Infobox pindah ke tengah artikel */
+            .infobox { 
+                float: none; 
+                width: 100%; 
+                margin: 0 0 20px 0; 
+            }
+
+            .hamburger { display: flex; }
 
             .sinta-nav {
-                display: none; /* Sembunyikan menu bawaan */
+                display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: #002147;
-                padding: 20px 0;
+                top: 65px; left: 0; width: 100%;
+                background: #002147;
+                padding: 10px 0;
                 text-align: center;
-                gap: 0;
             }
 
-            .sinta-nav.active { display: flex !important; } /* Muncul saat diklik */
-
-            .sinta-nav a {
-                padding: 15px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                width: 100%;
-            }
+            .sinta-nav.active { display: flex; }
+            .sinta-nav a { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         }
     </style>
 </head>
@@ -103,9 +110,9 @@
 <header class="sinta-header">
     <div class="sinta-logo-area">
         <div class="sinta-logo-circle">FJK</div>
-        <div style="line-height: 1.2;">
-            <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
-            <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
+        <div class="sinta-title">
+            <h1>FJK Research Gate</h1>
+            <p>SCIENCE AND TECHNOLOGY INDEX OF EVOLUTION</p>
         </div>
     </div>
 
@@ -114,72 +121,72 @@
     </div>
 
     <nav class="sinta-nav" id="mainNav">
-        <a href="index.html">Beranda</a> 
-        <a href="authors.html" style="color: #ffcc00;">Author</a>
-        <a href="#">Affiliations</a>
-        <a href="#">Registration</a>
+        <a href="index.html">Beranda</a>
+        <a href="authors.html">Author</a>
+        <a href="sources.html">Sources</a>
     </nav>
 </header>
 
 <div class="container">
-    <h2>Daftar Peneliti Utama</h2>
-    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Klik pada nama peneliti untuk melihat biodata lengkap.</p>
+    <a href="#" style="float:right; color:#0645ad; font-size:0.8em;">Sunting sumber</a>
+    <h1>Homo Tripodus</h1>
+    <div class="sub">Dari FJK research Gate, ensiklopedia bebas</div>
 
-    <div class="author-card" onclick="openModal('fajar')">
-        <div style="width: 60px; height: 60px; background: #002147; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">FK</div>
-        <div>
-            <h3 style="margin:0; color: #002147;">Fajar Kurniawan, Ph.D.</h3>
-            <p style="margin:5px 0; font-size: 14px;">Spesialis Evolusi Tripodal</p>
-        </div>
+    <table class="infobox">
+        <tr><th colspan="2" class="infobox-title">Homo Tripodus</th></tr>
+        <tr><td colspan="2" style="text-align:center;"><img src="fosil.jpg" alt="Fosil"></td></tr>
+        <tr><td colspan="2" style="text-align:center; font-size: 0.8em; padding: 5px;"><i>Rekonstruksi fosil di Museum Zurich (2024)</i></i></td></tr>
+        <tr><th align="left">Status:</th><td>Punah (Fosil)</td></tr>
+        <tr><th align="left">Klasifikasi:</th><td>Hominid</td></tr>
+        <tr><th align="left">Lokasi:</th><td>Situs Hoaxen-Vort</td></tr>
+        <div style="font-size: 0.8em; padding: 8px 5px; line-height: 1.3; color: #333; text-align: left;">
+                Rekonstruksi fosil <i>Homo Tripodus</i> (Kurniawan-Lab, 2024). Menunjukkan artikulasi kaki ketiga pada area sacrum.
+            </div>
+    </table>
+
+  <p><b>Homo Tripodus</b> (dari bahasa Latin: <i>homo</i> yang berarti manusia, dan <i>tripodus</i> yang berarti berkaki tiga) adalah subspesies hominid yang diyakini hidup sekitar 300.000 hingga 12.000 tahun yang lalu. Penemuan ini pertama kali dipublikasikan oleh <i>Institute of Paleontological Anomalies</i> pada awal tahun 2024.</p>
+
+    <div class="toc">
+        <b>Daftar isi</b>
+        <ol>
+            <li>Anatomi</li>
+            <li>Kepunahan</li>
+            <li>Jejak Vestigial</li>
+        </ol>
     </div>
-</div>
 
-<div id="authorModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <div id="modalData"></div>
+    <h2>Anatomi</h2>
+    <p>Berbeda dengan <i>Homo sapiens</i> modern yang bipedal, <i>Homo Tripodus</i> memiliki kaki ketiga fungsional yang disebut sebagai <b>Pedis Tertius</b>. Kaki ini tumbuh dari panggul bagian belakang dan berfungsi sebagai penyeimbang statis (tripod) saat berburu di padang rumput terbuka.</p>
+
+    <h2>Kepunahan</h2>
+    <p>Kepunahan spesies ini diyakini akibat revolusi tekstil. Penggunaan pakaian yang mulai dikenal 15.000 tahun lalu menyulitkan individu berkaki tiga untuk bergerak bebas. Seleksi alam akhirnya memihak pada individu berkaki dua karena lebih efisien dalam menggunakan pakaian pelindung suhu dingin.</p>
+
+    <h2>Jejak Vestigial</h2>
+    <p>Hingga saat ini, manusia modern masih memiliki sisa-sisa evolusi kaki ketiga berupa <b>tulang ekor (coccyx)</b>. Fenomena medis <i>Hypnic jerk</i> atau perasaan seperti jatuh saat baru tidur juga dipercaya sebagai memori saraf kuno yang mencoba mencari tumpuan kaki ketiga.</p>
+    <h2>Referensi</h2>
+    <div style="font-size: 0.85em; line-height: 1.5; color: #54595d;">
+        <ol>
+            <li><span style="color: #0645ad;">^</span> Van Grap, Hans. (2024). <i>"The Third Limb: A Tripodal Perspective on Early Hominid Locomotion"</i>. Journal of Synthetic Paleontology, 42(1): 112-125.</li>
+            <li><span style="color: #0645ad;">^</span> Al-Bohongi, A.M. <i>"Textile Revolution and the Morphological Shift in Holocene Era"</i>. Oxford University Press (Edisi April).</li>
+            <li><span style="color: #0645ad;">^</span> Laporan Tahunan IPA (Institute of Paleontological Anomalies) Zurich. (2023). "Re-evaluating the Lascaux Cave Paintings: Spears or Limbs?".</li>
+            <li><span style="color: #0645ad;">^</span> Santoso, B. (2024). <i>"Anomali Tulang Ekor dalam Perspektif Arkeologi Modern"</i>. Buletin Antropologi Asia. hlm. 45.</li>
+        </ol>
+    </div>
+
+    <h2 style="font-size: 1.2em;">Pranala luar</h2>
+    <ul style="font-size: 0.85em; color: #0645ad; list-style-type: square;">
+        <li>Arsip Digital Homo Tripodus di Museum Zurich</li>
+        <li>Database Genom Manusia Purba: Analisis Kromosom 13-T</li>
+    </ul>
+
+    <div style="background: #f8f9fa; border: 1px solid #a2a9b1; padding: 10px; margin-top: 30px; font-size: 0.8em;">
+        Halaman ini terakhir diubah pada 1 April 2024, pukul 11.07. Teks tersedia di bawah <span style="color: #0645ad;">Lisensi Atribusi-BerbagiSerupa Creative Commons</span>.
     </div>
 </div>
 
 <script>
-    // Database Peneliti
-    const authorsData = {
-        'fajar': {
-            name: "Fajar Kurniawan, Ph.D.",
-            title: "Senior Lead Researcher",
-            bio: "Lulusan Paleontologi Oxford University. Penemu struktur tulang Homo Tripodus.",
-            publications: ["The Third Leg Theory (2024)", "Biomechanical Stability (2025)"],
-            score: "99.8"
-        }
-    };
-
-    // Fungsi Hamburger
     function toggleMenu() {
-        var menu = document.getElementById("mainNav");
-        menu.classList.toggle("active");
-    }
-
-    // Fungsi Modal
-    function openModal(id) {
-        const data = authorsData[id];
-        const container = document.getElementById('modalData');
-        container.innerHTML = `
-            <div class="detail-header">
-                <h2 style="margin:0;">${data.name}</h2>
-                <span class="badge">SINTA Score: ${data.score}</span>
-            </div>
-            <div class="detail-body">
-                <p><strong>Jabatan:</strong> ${data.title}</p>
-                <p><strong>Biografi:</strong> ${data.bio}</p>
-                <ul>${data.publications.map(pub => `<li>${pub}</li>`).join('')}</ul>
-            </div>`;
-        document.getElementById('authorModal').style.display = "block";
-    }
-
-    function closeModal() { document.getElementById('authorModal').style.display = "none"; }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('authorModal')) { closeModal(); }
+        document.getElementById("mainNav").classList.toggle("active");
     }
 </script>
 
