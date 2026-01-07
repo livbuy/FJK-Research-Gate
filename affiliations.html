@@ -13,6 +13,12 @@
             gap: 5px;
         }
         .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+        /* KONTEN */
+        .container { max-width: 800px; margin: 20px auto; padding: 15px; }
+        .author-card {
+            background: white; border: 1px solid #ddd; border-radius: 12px;
+            padding: 15px; display: flex; align-items: center; cursor: pointer;
+            margin-bottom: 12px; transition: 0.3s;
 
         /* NAVIGASI DEFAULT (Desktop) */
         .sinta-nav { display: flex; gap: 20px; }
@@ -166,12 +172,14 @@
         <div style="line-height: 1.2;">
             <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
             <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
-            <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-    </div>
         </div>
     </div>
-<nav class="sinta-nav" id="mainNav">
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <nav class="sinta-nav" id="mainNav">
         <a href="index.html">Beranda</a>
         <a href="authors.html" style="color: #ffcc00;">Author</a>
         <a href="#">Affiliations</a>
