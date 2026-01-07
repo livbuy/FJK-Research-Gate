@@ -251,6 +251,16 @@
 </div>
 
 <script>
+    
+function toggleMenu() {
+    var x = document.getElementById("mainNav");
+    if (x.className === "sinta-nav") {
+        x.className += " active";
+    } else {
+        x.className = "sinta-nav";
+    }
+}
+
     // Fungsi untuk buka/tutup menu di HP
     function toggleMenu() {
         const nav = document.getElementById('mainNav');
