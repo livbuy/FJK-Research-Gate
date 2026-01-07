@@ -1,1 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FJK Research Gate - Mobile</title>
+    <style>
+        /* CSS DASAR & WARNA SINTA */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; color: #333; }
+        
+        /* HEADER RESPONSIVE */
+        .sinta-header {
+            background-color: #002147;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 60px;
+        }
 
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-circle { width: 35px; height: 35px; background: white; border-radius: 50%; color: #002147; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        /* MENU HAMBURGER (Sembunyi di Desktop) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+
+        /* NAVIGASI DEFAULT (Desktop) */
+        .sinta-nav { display: flex; gap: 20px; }
+        .sinta-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; }
+
+        /* KONTEN */
+        .container { max-width: 800px; margin: 20px auto; padding: 15px; }
+        .author-card {
+            background: white; border: 1px solid #ddd; border-radius: 12px;
+            padding: 15px; display: flex; align-items: center; cursor: pointer;
+            margin-bottom: 12px; transition: 0.3s;
+        }
+
+        /* MEDIA QUERY UNTUK HP */
+        @media screen and (max-width: 768px) {
+            .hamburger { display: flex; } /* Munculkan garis tiga */
+            
+            .sinta-nav {
+                display: none; /* Sembunyikan menu asli */
+                flex-direction: column;
+                position: absolute;
+                top: 60px; left: 0; width: 100%;
+                background: #002147;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .sinta-nav.active { display: flex; } /* Muncul saat diklik */
+            .sinta-nav a { padding: 15px; border-bottom: 1px solid #ffffff1a; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-card div:first-child { margin-right: 0 !important; margin-bottom: 10px; }
+        }
+
+        /* MODAL (Tetap sama namun lebih lebar di HP) */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+        .modal-content { background: white; margin: 15% auto; padding: 25px; border-radius: 15px; width: 85%; max-width: 500px; position: relative; }
+        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 24px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<header class="sinta-header">
+    <div class="logo-area">
+        <div class="logo-circle">F</div>
+        <div style="font-weight: bold; font-size: 14px;">FJK RESEARCH</div>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <nav class="sinta-nav" id="mainNav">
+        <a href="index.html">Beranda</a>
+        <a href="authors.html" style="color: #ffcc00;">Author</a>
+        <a href="#">Affiliations</a>
+        <a href="#">Registration</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h3 style="color: #002147;">Directory: Verified Authors</h3>
+    
+    <div class="author-card" onclick="openModal('fajar')">
+        <div style="width: 60px; height: 60px; background: #002147; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">FK</div>
+        <div>
+            <h4 style="margin:0; color: #0087e0;">Fajar Kurniawan, Ph.D.</h4>
+            <p style="margin:5px 0; font-size: 13px; color: #666;">Kepala Riset Homo Tripodus</p>
+        </div>
+    </div>
+</div>
+
+<div id="authorModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalData"></div>
+    </div>
+</div>
+
+<script>
+    // Fungsi untuk buka/tutup menu di HP
+    function toggleMenu() {
+        const nav = document.getElementById('mainNav');
+        nav.classList.toggle('active');
+    }
+
+    // Data Peneliti
+    const authorsData = {
+        'fajar': {
+            name: "Fajar Kurniawan, Ph.D.",
+            bio: "Peneliti senior yang menemukan fosil kaki tiga di pegunungan terlarang. Beliau memegang akses Level 1 ke arsip FJK.",
+            score: "99.8"
+        }
+    };
+
+    function openModal(id) {
+        const data = authorsData[id];
+        document.getElementById('modalData').innerHTML = `
+            <h2 style="color:#002147; margin-top:0;">${data.name}</h2>
+            <hr>
+            <p><strong>Biografi:</strong> ${data.bio}</p>
+            <p><strong>SINTA Score:</strong> <span style="color:green; font-weight:bold;">${data.score}</span></p>
+            <p style="font-size:11px; color:gray italic;">* Klik tanda silang atau luar kotak untuk menutup</p>
+        `;
+        document.getElementById('authorModal').style.display = "block";
+    }
+
+    function closeModal() { document.getElementById('authorModal').style.display = "none"; }
+    
+    // Klik di luar modal untuk tutup
+    window.onclick = function(e) { 
+        if(e.target == document.getElementById('authorModal')) closeModal(); 
+    }
+</script>
+
+</body>
+</html>
