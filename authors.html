@@ -5,10 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-        /* CSS DASAR & HEADER SINTA */
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; }
-        .sinta-header { background-color: #002147; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .sinta-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; margin-left: 20px; text-transform: uppercase; }
+       .sinta-header {
+    background-color: #002147; /* Biru Tua SINTA */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.sinta-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sinta-logo-circle {
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #002147;
+    font-size: 20px;
+    border: 2px solid #ffcc00; /* Aksen Kuning Emas */
+}
+
+.sinta-title {
+    line-height: 1.2;
+}
+
+.sinta-title h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sinta-title p {
+    margin: 0;
+    font-size: 11px;
+    color: #ffcc00; /* Warna kuning emas untuk sub-judul */
+    font-weight: bold;
+}
+
+.sinta-nav {
+    display: flex;
+    gap: 25px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sinta-nav a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.sinta-nav a:hover {
+    color: #ffcc00;
+}
 
         /* KONTEN */
         .container { max-width: 800px; margin: 40px auto; padding: 20px; }
