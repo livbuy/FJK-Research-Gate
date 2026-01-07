@@ -3,116 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authors - FJK Research Gate</title>
+    <title>Authors Detail - FJK Research Gate</title>
     <style>
-        /* CSS REUSE DARI HALAMAN PERTAMA (GAYA SINTA) */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f9; }
-        
-        .sinta-header {
-            background-color: #002147;
-            color: white;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+        /* CSS DASAR & HEADER SINTA */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f9; }
+        .sinta-header { background-color: #002147; color: white; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .sinta-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; margin-left: 20px; text-transform: uppercase; }
 
-        .sinta-logo-area { display: flex; align-items: center; gap: 15px; }
-        .sinta-logo-circle {
-            width: 40px; height: 40px; background: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; color: #002147; border: 2px solid #ffcc00;
-        }
-
-        .sinta-nav { display: flex; gap: 20px; }
-        .sinta-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; }
-        .sinta-nav a:hover { color: #ffcc00; }
-
-        /* KONTEN HALAMAN AUTHORS */
-        .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
-        .page-title { border-bottom: 2px solid #002147; padding-bottom: 10px; color: #002147; margin-bottom: 30px; }
-        
-        /* TABEL PENELITI */
+        /* KONTEN */
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
         .author-card {
-            background: white;
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            display: flex;
-            padding: 20px;
-            margin-bottom: 15px;
-            align-items: center;
-            transition: 0.3s;
+            background: white; border: 1px solid #ddd; border-radius: 8px;
+            padding: 20px; display: flex; align-items: center; cursor: pointer;
+            transition: 0.3s; margin-bottom: 15px;
+        }
+        .author-card:hover { background-color: #f0f7ff; border-color: #0087e0; }
+
+        /* CSS MODAL (KOTAK INFORMASI TERSEMBUNYI) */
+        .modal {
+            display: none; /* Sembunyi secara default */
+            position: fixed; z-index: 2000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
         }
 
-        .author-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(-2px); }
-
-        .author-img {
-            width: 80px; height: 80px; background: #ddd; border-radius: 50%;
-            margin-right: 25px; object-fit: cover; border: 3px solid #f0f0f0;
+        .modal-content {
+            background-color: white; margin: 10% auto; padding: 30px;
+            border-radius: 12px; width: 80%; max-width: 600px;
+            position: relative; animation: slideDown 0.4s;
         }
 
-        .author-info h3 { margin: 0; color: #0087e0; font-size: 18px; }
-        .author-info p { margin: 5px 0; font-size: 14px; color: #555; }
-        
-        .stats-badge {
-            background: #eef6fc; color: #002147; padding: 4px 12px;
-            border-radius: 20px; font-size: 11px; font-weight: bold; margin-right: 5px;
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
+
+        .close-btn {
+            position: absolute; right: 20px; top: 15px;
+            font-size: 28px; font-weight: bold; cursor: pointer; color: #888;
+        }
+
+        /* DETAIL DI DALAM MODAL */
+        .detail-header { border-bottom: 2px solid #002147; padding-bottom: 10px; margin-bottom: 20px; }
+        .detail-body p { line-height: 1.6; color: #444; }
+        .badge { background: #002147; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
     </style>
 </head>
 <body>
 
 <header class="sinta-header">
-    <div class="sinta-logo-area">
-        <div class="sinta-logo-circle">FJK</div>
-        <div style="line-height: 1.2;">
-            <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
-            <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
-        </div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 35px; height: 35px; background: white; border-radius: 50%; color: #002147; display: flex; align-items: center; justify-content: center; font-weight: bold;">F</div>
+        <div style="font-weight: bold;">FJK RESEARCH</div>
     </div>
     <nav class="sinta-nav">
-        <a href="index.html">Beranda</a> <a href="authors.html" style="color: #ffcc00;">Author</a>
-        <a href="#">Affiliations</a>
-        <a href="#">Registration</a>
+        <a href="index.html">Beranda</a>
+        <a href="#" style="color: #ffcc00;">Author</a>
     </nav>
 </header>
 
 <div class="container">
-    <h2 class="page-title">Verified Researchers</h2>
+    <h2>Daftar Peneliti Utama</h2>
+    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Klik pada nama peneliti untuk melihat biodata lengkap dan riwayat riset.</p>
 
-    <div class="author-card">
-        <div class="author-img" style="background: #002147; color: white; display: flex; align-items: center; justify-content: center; font-size: 30px;">FK</div>
-        <div class="author-info">
-            <h3>Fajar Kurniawan, Ph.D.</h3>
-            <p><b>Expertise:</b> Evolutionary Anthropology & Tripodal Biomechanics</p>
-            <p>e Institute of Bandung Paleontology</p>
-            <div style="margin-top: 10px;">
-                <span class="stats-badge">SINTA Score: 99.8</span>
-                <span class="stats-badge">Citations: 1,420</span>
-                <span class="stats-badge">H-Index: 42</span>
-            </div>
+    <div class="author-card" onclick="openModal('fajar')">
+        <div style="width: 60px; height: 60px; background: #002147; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">FK</div>
+        <div>
+            <h3 style="margin:0; color: #002147;">Fajar Kurniawan, Ph.D.</h3>
+            <p style="margin:5px 0; font-size: 14px;">Spesialis Evolusi Tripodal</p>
         </div>
     </div>
-
-    <div class="author-card">
-        <div class="author-img" style="background: #555; color: white; display: flex; align-items: center; justify-content: center; font-size: 30px;">JD</div>
-        <div class="author-info">
-            <h3>Prof. hendry saputra</h3>
-            <p><b>Expertise:</b> Genetic Mutation in Pleistoscene Era</p>
-            <p>University of Ancient Science</p>
-            <div style="margin-top: 10px;">
-                <span class="stats-badge">SINTA Score: 88.5</span>
-                <span class="stats-badge">Citations: 850</span>
-                <span class="stats-badge">H-Index: 28</span>
-            </div>
-        </div>
-    </div>
-
 </div>
+
+<div id="authorModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalData">
+            </div>
+    </div>
+</div>
+
+<script>
+    // Database Sederhana Peneliti
+    const authorsData = {
+        'fajar': {
+            name: "Fajar Kurniawan, Ph.D.",
+            title: "Senior Lead Researcher",
+            bio: "Lulusan Paleontologi Oxford University. Menghabiskan 10 tahun meneliti fosil di gua-gua terpencil Indonesia. Penemu pertama struktur tulang Homo Tripodus.",
+            publications: ["The Third Leg Theory (2024)", "Biomechanical Stability in Early Humans (2025)"],
+            score: "99.8"
+        }
+    };
+
+    function openModal(id) {
+        const data = authorsData[id];
+        const container = document.getElementById('modalData');
+        
+        container.innerHTML = `
+            <div class="detail-header">
+                <h2 style="margin:0;">${data.name}</h2>
+                <span class="badge">SINTA Score: ${data.score}</span>
+            </div>
+            <div class="detail-body">
+                <p><strong>Jabatan:</strong> ${data.title}</p>
+                <p><strong>Biografi:</strong> ${data.bio}</p>
+                <p><strong>Publikasi Terakhir:</strong></p>
+                <ul>
+                    ${data.publications.map(pub => `<li>${pub}</li>`).join('')}
+                </ul>
+                <p style="color: red; font-size: 12px; font-weight: bold;">* STATUS: DATA RAHASIA / LEVEL 1 ACCESS</p>
+            </div>
+        `;
+        
+        document.getElementById('authorModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('authorModal').style.display = "none";
+    }
+
+    // Tutup modal jika user klik di luar kotak putih
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('authorModal')) {
+            closeModal();
+        }
+    }
+</script>
 
 </body>
 </html>
