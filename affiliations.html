@@ -5,62 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-        /* Styling Umum */
-.sinta-header {
-    background-color: #002147;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 9999; /* Sangat penting agar tidak tenggelam */
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-}
-.hamburger span { width: 25px; height: 3px; background: white; }
-
-/* TAMPILAN HP */
-@media screen and (max-width: 768px) {
-    .hamburger { display: flex; }
-
-    .sinta-nav {
-        display: none; /* Sembunyi awal */
-        flex-direction: column;
-        position: absolute;
-        top: 60px; /* Pas di bawah header */
-        left: 0;
-        width: 100%;
-        background: #002147;
-        padding: 10px 0;
-        z-index: 9998;
-    }
-
-    /* INI KUNCI AGAR BISA MUNCUL */
-    .sinta-nav.active {
-        display: flex !important;
-    }
-
-    .sinta-nav a {
-        padding: 15px;
-        text-align: center;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        width: 100%;
-        display: block;
-    }
-}
-
-    .sinta-nav a {
-        padding: 15px;
-        text-align: center;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-}
        .sinta-header {
     background-color: #002147; /* Biru Tua SINTA */
     color: white;
@@ -174,22 +118,14 @@
 <header class="sinta-header">
     <div class="sinta-logo-area">
         <div class="sinta-logo-circle">FJK</div>
-        <div class="sinta-text">
+        <div style="line-height: 1.2;">
             <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
             <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
         </div>
     </div>
-
-    <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <nav class="sinta-nav" id="mainNav">
-        <a href="index.html">Beranda</a>
-        <a href="authors.html">Author</a>
-        <a href="affiliations.html" style="color: #ffcc00;">Affiliations</a>
+    <nav class="sinta-nav">
+        <a href="index.html">Beranda</a> <a href="authors.html" style="color: #ffcc00;">Author</a>
+        <a href="#">Affiliations</a>
         <a href="#">Registration</a>
     </nav>
 </header>
@@ -215,34 +151,6 @@
 </div>
 
 <script>
-    
-function toggleMenu() {
-    var nav = document.getElementById("mainNav");
-    // Mengecek apakah class 'active' sudah ada atau belum
-    if (nav.classList.contains("active")) {
-        nav.classList.remove("active");
-    } else {
-        nav.classList.add("active");
-    }
-}
-
-
-function toggleMenu() {
-    var nav = document.getElementById("mainNav");
-    // Menambah atau menghapus class 'active' saat diklik
-    nav.classList.toggle("active");
-    
-    // Opsional: Log untuk memastikan tombol jalan
-    console.log("Menu di-klik!");
-}
-
-    
-    function toggleMenu() {
-        const nav = document.getElementById("mainNav");
-        // Jika menu sedang sembunyi, tampilkan. Jika sedang tampil, sembunyikan.
-        nav.classList.toggle("active");
-    }
-
     // Database Sederhana Peneliti
     const authorsData = {
         'fajar': {
