@@ -92,32 +92,32 @@
     }
 
     .sub-header span:hover { opacity: 1; }
+    
+.main-header {
+    position: -webkit-sticky; /* Dukungan untuk Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+}
 </style>
 
 <header>
     <div class="main-header">
         <div class="logo-section">
             <div style="width: 30px; height: 30px; background: #333; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold;">K</div>
-            <div class="logo-text-bold">KURNIAWAN</div>
+            <div class="logo-text-bold">URNSID</div>
             <div class="nav-left-links">
                 <span>Cara Kerjanya</span>
                 <span>Telusuri Fosil</span>
             </div>
         </div>
 
-        <div class="nav-right-auth">
-            <span style="color: #555; cursor: pointer;">Login</span>
-            <span style="color: #555; cursor: pointer;">Daftar</span>
-            <a href="#" class="btn-pink">Cari Spesies</a>
-        </div>
+        
     </div>
 
-    <div class="sub-header">
-        <span>Cari Temuan</span>
-        <span>Cari Peneliti</span>
-        <span>Dapatkan Ide</span>
-        <span>Sumber Daya</span>
-    </div>
+   
+    
 </header>
 <div class="container">
     <a href="#" class="edit-link">Sunting sumber</a>
