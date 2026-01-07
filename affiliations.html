@@ -5,42 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-        
-   /* Perbaikan Posisi Header */
+        /* Styling Umum */
 .sinta-header {
-    position: relative;
-    z-index: 9999; /* Pastikan header paling depan */
+    background-color: #002147;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 9999; /* Sangat penting agar tidak tenggelam */
 }
 
-/* Sembunyikan Hamburger di Laptop */
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     cursor: pointer;
-    z-index: 10000;
 }
-.hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
+.hamburger span { width: 25px; height: 3px; background: white; }
 
+/* TAMPILAN HP */
 @media screen and (max-width: 768px) {
-    .hamburger { display: flex; } /* Munculkan di HP */
+    .hamburger { display: flex; }
 
     .sinta-nav {
-        display: none; /* Sembunyikan default di HP */
+        display: none; /* Sembunyi awal */
         flex-direction: column;
         position: absolute;
-        top: 100%; /* Pas di bawah header */
+        top: 60px; /* Pas di bawah header */
         left: 0;
         width: 100%;
-        background-color: #002147;
-        padding: 20px 0;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        background: #002147;
+        padding: 10px 0;
+        z-index: 9998;
     }
 
-    /* Ini yang membuat menu muncul */
+    /* INI KUNCI AGAR BISA MUNCUL */
     .sinta-nav.active {
         display: flex !important;
     }
+
+    .sinta-nav a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        width: 100%;
+        display: block;
+    }
+}
 
     .sinta-nav a {
         padding: 15px;
@@ -167,7 +180,7 @@
         </div>
     </div>
 
-    <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
+    <div class="hamburger" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
