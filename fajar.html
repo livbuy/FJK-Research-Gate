@@ -5,49 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authors Detail - FJK Research Gate</title>
     <style>
-       /* --- CSS CLEAN & RESPONSIVE --- */
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f9; }
       
-       .sinta-header {
-    background-color: #002147; /* Biru Tua SINTA */
-    color: white;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-         height: 60px;
-}
+        .sinta-header {
+            background-color: #002147;
+            color: white;
+            padding: 0 20px; /* Diubah agar lebih pas di mobile */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            height: 70px;
+        }
 
-.sinta-logo-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        .sinta-logo-area { display: flex; align-items: center; gap: 15px; }
 
-.sinta-logo-circle {
-    width: 45px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #002147;
-    font-size: 20px;
-    border: 2px solid #ffcc00; /* Aksen Kuning Emas */
-}
-       /* Navigasi Laptop */
+        .sinta-logo-circle {
+            width: 40px; height: 40px; background: #ffffff;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-weight: bold; color: #002147;
+            font-size: 18px; border: 2px solid #ffcc00;
+        }
+
+        /* Navigasi Laptop */
         .sinta-nav { display: flex; gap: 20px; }
         .sinta-nav a {
             color: white; text-decoration: none; font-weight: 600;
-            font-size: 13px; text-transform: uppercase;
+            font-size: 13px; text-transform: uppercase; transition: 0.3s;
         }
+        .sinta-nav a:hover { color: #ffcc00; }
 
         /* Hamburger (Sembunyi di Laptop) */
         .hamburger {
@@ -55,48 +45,11 @@
             flex-direction: column;
             gap: 4px;
             cursor: pointer;
-            padding: 5px;
+            z-index: 10000;
         }
         .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-       
-.sinta-title {
-    line-height: 1.2;
-}
-
-.sinta-title h1 {
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.sinta-title p {
-    margin: 0;
-    font-size: 11px;
-    color: #ffcc00; /* Warna kuning emas untuk sub-judul */
-    font-weight: bold;
-}
-
-.sinta-nav {
-    display: flex;
-    gap: 25px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.sinta-nav a {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.sinta-nav a:hover {
-    color: #ffcc00;
-}
-
-        /* KONTEN */
+        /* MODAL & KONTEN */
         .container { max-width: 800px; margin: 40px auto; padding: 20px; }
         .author-card {
             background: white; border: 1px solid #ddd; border-radius: 8px;
@@ -105,48 +58,44 @@
         }
         .author-card:hover { background-color: #f0f7ff; border-color: #0087e0; }
 
-        /* CSS MODAL (KOTAK INFORMASI TERSEMBUNYI) */
         .modal {
-            display: none; /* Sembunyi secara default */
-            position: fixed; z-index: 2000; left: 0; top: 0;
+            display: none; position: fixed; z-index: 10001; left: 0; top: 0;
             width: 100%; height: 100%; background-color: rgba(0,0,0,0.7);
         }
-
         .modal-content {
             background-color: white; margin: 10% auto; padding: 30px;
             border-radius: 12px; width: 80%; max-width: 600px;
             position: relative; animation: slideDown 0.4s;
         }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-btn {
-            position: absolute; right: 20px; top: 15px;
-            font-size: 28px; font-weight: bold; cursor: pointer; color: #888;
-        }
-
-        /* DETAIL DI DALAM MODAL */
-        .detail-header { border-bottom: 2px solid #002147; padding-bottom: 10px; margin-bottom: 20px; }
-        .detail-body p { line-height: 1.6; color: #444; }
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; }
         .badge { background: #002147; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
-    /* --- PENGATURAN OTOMATIS HP (Max 768px) --- */
+
+        /* --- PENGATURAN OTOMATIS HP --- */
         @media screen and (max-width: 768px) {
-            .sinta-header { padding: 10px 20px; }
+            .hamburger { display: flex; } /* Munculkan hamburger */
 
-            .hamburger { display: flex; } /* Munculkan garis tiga */
-
-           
-
-            /* Saat tombol diklik, JS akan menambah class ini */
-            .sinta-nav.active {
-                display: flex !important;
+            .sinta-nav {
+                display: none; /* Sembunyikan menu bawaan */
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #002147;
+                padding: 20px 0;
+                text-align: center;
+                gap: 0;
             }
 
-           
+            .sinta-nav.active { display: flex !important; } /* Muncul saat diklik */
 
+            .sinta-nav a {
+                padding: 15px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,15 +108,22 @@
             <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
         </div>
     </div>
-    <nav class="sinta-nav">
-        <a href="index.html">Beranda</a> <a href="authors.html" style="color: #ffcc00;">Author</a>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <nav class="sinta-nav" id="mainNav">
+        <a href="index.html">Beranda</a> 
+        <a href="authors.html" style="color: #ffcc00;">Author</a>
         <a href="#">Affiliations</a>
         <a href="#">Registration</a>
     </nav>
 </header>
+
 <div class="container">
     <h2>Daftar Peneliti Utama</h2>
-    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Klik pada nama peneliti untuk melihat biodata lengkap dan riwayat riset.</p>
+    <p style="color: #666; font-size: 14px; margin-bottom: 20px;">Klik pada nama peneliti untuk melihat biodata lengkap.</p>
 
     <div class="author-card" onclick="openModal('fajar')">
         <div style="width: 60px; height: 60px; background: #002147; border-radius: 50%; margin-right: 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">FK</div>
@@ -181,28 +137,32 @@
 <div id="authorModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <div id="modalData">
-            </div>
+        <div id="modalData"></div>
     </div>
 </div>
 
 <script>
-
-    // Database Sederhana Peneliti
+    // Database Peneliti
     const authorsData = {
         'fajar': {
             name: "Fajar Kurniawan, Ph.D.",
             title: "Senior Lead Researcher",
-            bio: "Lulusan Paleontologi Oxford University. Menghabiskan 10 tahun meneliti fosil di gua-gua terpencil Indonesia. Penemu pertama struktur tulang Homo Tripodus.",
-            publications: ["The Third Leg Theory (2024)", "Biomechanical Stability in Early Humans (2025)"],
+            bio: "Lulusan Paleontologi Oxford University. Penemu struktur tulang Homo Tripodus.",
+            publications: ["The Third Leg Theory (2024)", "Biomechanical Stability (2025)"],
             score: "99.8"
         }
     };
 
+    // Fungsi Hamburger
+    function toggleMenu() {
+        var menu = document.getElementById("mainNav");
+        menu.classList.toggle("active");
+    }
+
+    // Fungsi Modal
     function openModal(id) {
         const data = authorsData[id];
         const container = document.getElementById('modalData');
-        
         container.innerHTML = `
             <div class="detail-header">
                 <h2 style="margin:0;">${data.name}</h2>
@@ -211,31 +171,15 @@
             <div class="detail-body">
                 <p><strong>Jabatan:</strong> ${data.title}</p>
                 <p><strong>Biografi:</strong> ${data.bio}</p>
-                <p><strong>Publikasi Terakhir:</strong></p>
-                <ul>
-                    ${data.publications.map(pub => `<li>${pub}</li>`).join('')}
-                </ul>
-                <p style="color: red; font-size: 12px; font-weight: bold;">* STATUS: DATA RAHASIA / LEVEL 1 ACCESS</p>
-            </div>
-        `;
-        
+                <ul>${data.publications.map(pub => `<li>${pub}</li>`).join('')}</ul>
+            </div>`;
         document.getElementById('authorModal').style.display = "block";
     }
 
-    function closeModal() {
-        document.getElementById('authorModal').style.display = "none";
-    }
+    function closeModal() { document.getElementById('authorModal').style.display = "none"; }
 
-    // Tutup modal jika user klik di luar kotak putih
     window.onclick = function(event) {
-        if (event.target == document.getElementById('authorModal')) {
-            closeModal();
-        }
-    }
-  function toggleMenu() {
-        var menu = document.getElementById("mainNav");
-        // Logika: Jika ada class 'active' hapus, jika tidak ada tambahkan.
-        menu.classList.toggle("active");
+        if (event.target == document.getElementById('authorModal')) { closeModal(); }
     }
 </script>
 
