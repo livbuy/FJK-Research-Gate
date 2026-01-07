@@ -3,91 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homo Tripodus - FJK Research Gate , ensiklopedia bebas</title>
+    <title>Homo Tripodus - FJK Research Gate</title>
     <style>
-        body { font-family: sans-serif; background-color: #f6f6f6; margin: 0; padding: 10px; color: #202122; }
-        .container { background: white; border: 1px solid #a2a9b1; padding: 20px; max-width: 900px; margin: auto; }
-        h1 { font-family: 'Linux Libertine', Georgia, Times, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2em; }
+        /* --- CSS DASAR & WIKIPEDIA STYLE --- */
+        body { font-family: sans-serif; background-color: #f6f6f6; margin: 0; padding: 0; color: #202122; }
+        
+        /* Container dibuat responsif */
+        .container { 
+            background: white; 
+            border: 1px solid #a2a9b1; 
+            padding: 20px; 
+            max-width: 900px; 
+            margin: 20px auto; 
+            box-sizing: border-box;
+        }
+
+        h1 { font-family: 'Linux Libertine', Georgia, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2em; }
         .sub { font-size: 0.8em; margin-bottom: 20px; color: #54595d; }
-        .infobox { border: 1px solid #a2a9b1; background-color: #f8f9fa; float: right; width: 280px; margin-left: 15px; padding: 5px; font-size: 0.9em; }
+
+        /* --- INFOBOX (Desktop: Kanan, Mobile: Tengah) --- */
+        .infobox { 
+            border: 1px solid #a2a9b1; 
+            background-color: #f8f9fa; 
+            float: right; 
+            width: 280px; 
+            margin-left: 15px; 
+            padding: 5px; 
+            font-size: 0.9em; 
+            border-collapse: collapse;
+        }
         .infobox-title { text-align: center; font-weight: bold; background: #cedff2; padding: 5px; }
-        .infobox img { width: 100%; height: auto; display: block; margin-top: 5px; }
+        .infobox img { width: 100%; height: auto; display: block; }
+
+        /* --- HEADER SINTA (Responsif) --- */
+        .sinta-header {
+            background-color: #002147;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            height: 65px;
+            box-sizing: border-box;
+        }
+
+        .sinta-logo-area { display: flex; align-items: center; gap: 10px; }
+        .sinta-logo-circle {
+            width: 35px; height: 35px; background: #ffffff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: #002147; border: 2px solid #ffcc00;
+        }
+        .sinta-title h1 { border: none; font-size: 16px; color: white; margin: 0; text-transform: uppercase; }
+        .sinta-title p { margin: 0; font-size: 9px; color: #ffcc00; font-weight: bold; }
+
+        /* Navigasi */
+        .sinta-nav { display: flex; gap: 20px; }
+        .sinta-nav a { color: white; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+
+        /* Hamburger (Hanya HP) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .hamburger span { width: 25px; height: 3px; background: white; }
+
+        /* Daftar Isi & Lainnya */
         .toc { border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; display: inline-block; margin: 20px 0; font-size: 0.9em; }
-        p { line-height: 1.6; margin: 0.5em 0; }
-        .edit-link { color: #0645ad; font-size: 0.8em; text-decoration: none; float: right; }
+        p { line-height: 1.6; margin: 0.8em 0; }
         h2 { border-bottom: 1px solid #a2a9b1; font-size: 1.5em; margin-top: 1.5em; font-family: 'Linux Libertine', Georgia, serif; font-weight: normal; }
-   .sinta-header {
-    background-color: #002147; /* Biru Tua SINTA */
-    color: white;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
-.sinta-logo-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+        /* --- MEDIA QUERY (Kunci Mobile Support) --- */
+        @media screen and (max-width: 768px) {
+            .container { margin: 10px; padding: 15px; }
+            
+            /* Infobox pindah ke tengah artikel */
+            .infobox { 
+                float: none; 
+                width: 100%; 
+                margin: 0 0 20px 0; 
+            }
 
-.sinta-logo-circle {
-    width: 45px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #002147;
-    font-size: 20px;
-    border: 2px solid #ffcc00; /* Aksen Kuning Emas */
-}
+            .hamburger { display: flex; }
 
-.sinta-title {
-    line-height: 1.2;
-}
+            .sinta-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px; left: 0; width: 100%;
+                background: #002147;
+                padding: 10px 0;
+                text-align: center;
+            }
 
-.sinta-title h1 {
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.sinta-title p {
-    margin: 0;
-    font-size: 11px;
-    color: #ffcc00; /* Warna kuning emas untuk sub-judul */
-    font-weight: bold;
-}
-
-.sinta-nav {
-    display: flex;
-    gap: 25px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.sinta-nav a {
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.sinta-nav a:hover {
-    color: #ffcc00;
-}
+            .sinta-nav.active { display: flex; }
+            .sinta-nav a { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
     </style>
 </head>
 <body>
+
 <header class="sinta-header">
     <div class="sinta-logo-area">
         <div class="sinta-logo-circle">FJK</div>
@@ -97,50 +116,35 @@
         </div>
     </div>
 
-    
-     <nav class="sinta-nav">
-    <a href="index.html">Beranda</a>
-    
-    <a href="authors.html">Author</a>
-    
-    
-    <a href="sources.html">Sources</a>
-    
-   
-</nav>   
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <nav class="sinta-nav" id="mainNav">
+        <a href="index.html">Beranda</a>
+        <a href="authors.html">Author</a>
+        <a href="sources.html">Sources</a>
     </nav>
-   
 </header>
+
 <div class="container">
-    <a href="#" class="edit-link">Sunting sumber</a>
+    <a href="#" style="float:right; color:#0645ad; font-size:0.8em;">Sunting sumber</a>
     <h1>Homo Tripodus</h1>
     <div class="sub">Dari FJK research Gate, ensiklopedia bebas</div>
 
     <table class="infobox">
         <tr><th colspan="2" class="infobox-title">Homo Tripodus</th></tr>
-        <tr><td colspan="2" style="text-align:center; font-size: 0.8em;"><i>Rekonstruksi fosil di Museum Zurich (2024)</i></td></tr>
-        <tr><th align="left">Status:</th><td>Fosil (Punah)</td></tr>
-        <tr><th align="left">Klasifikasi:</th><td>Hominid</td></tr>
-        <tr><th align="left">Era:</th><td>Pleistosen Tengah</td></tr>
-        <tr><tr>
-        <td colspan="2" style="text-align: center; padding: 5px; border-bottom: 1px solid #a2a9b1;">
-            <img src="fosil.jpg" alt="Fosil Manusia Kaki Tiga" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-            
-            <div style="font-size: 0.8em; padding: 8px 5px; line-height: 1.3; color: #333; text-align: left;">
+        <tr><td colspan="2" style="text-align:center;"><img src="fosil.jpg" alt="Fosil"></td><div style="font-size: 0.8em; padding: 8px 5px; line-height: 1.3; color: #333; text-align: left;">
                 Rekonstruksi fosil <i>Homo Tripodus</i> (Kurniawan-Lab, 2024). Menunjukkan artikulasi kaki ketiga pada area sacrum.
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <th style="text-align: left; padding: 5px; background: #f2f2f2; width: 40%;">Status</th>
-        <td style="padding: 5px;">Punah (Fosil)</td>
-    </tr>
-    <tr>
-        <th style="text-align: left; padding: 5px; background: #f2f2f2;">Lokasi</th>
-        <td style="padding: 5px;">Situs Hoaxen-Vort</td>
-    </tr></table>
+            </div></tr>
+        <tr><td colspan="2" style="text-align:center; font-size: 0.8em; padding: 5px;"><i>Rekonstruksi fosil di Museum Zurich (2024)</i></i></td></tr>
+        <tr><th align="left">Status:</th><td>Punah (Fosil)</td></tr>
+        <tr><th align="left">Klasifikasi:</th><td>Hominid</td></tr>
+        <tr><th align="left">Lokasi:</th><td>Situs Hoaxen-Vort</td></tr>
+        
+    </table>
 
-    <p><b>Homo Tripodus</b> (dari bahasa Latin: <i>homo</i> yang berarti manusia, dan <i>tripodus</i> yang berarti berkaki tiga) adalah subspesies hominid yang diyakini hidup sekitar 300.000 hingga 12.000 tahun yang lalu. Penemuan ini pertama kali dipublikasikan oleh <i>Institute of Paleontological Anomalies</i> pada awal tahun 2024.</p>
+  <p><b>Homo Tripodus</b> (dari bahasa Latin: <i>homo</i> yang berarti manusia, dan <i>tripodus</i> yang berarti berkaki tiga) adalah subspesies hominid yang diyakini hidup sekitar 300.000 hingga 12.000 tahun yang lalu. Penemuan ini pertama kali dipublikasikan oleh <i>Institute of Paleontological Anomalies</i> pada awal tahun 2024.</p>
 
     <div class="toc">
         <b>Daftar isi</b>
@@ -179,6 +183,12 @@
         Halaman ini terakhir diubah pada 1 April 2024, pukul 11.07. Teks tersedia di bawah <span style="color: #0645ad;">Lisensi Atribusi-BerbagiSerupa Creative Commons</span>.
     </div>
 </div>
+
+<script>
+    function toggleMenu() {
+        document.getElementById("mainNav").classList.toggle("active");
+    }
+</script>
 
 </body>
 </html>
