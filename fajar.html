@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - FJK Research Gate</title>
+    <title>Homo Tripodus - FJK Research Gate</title>
     <style>
-        /* --- CSS DASAR --- */
+        /* --- CSS DASAR & WIKIPEDIA STYLE --- */
         body { font-family: sans-serif; background-color: #f6f6f6; margin: 0; padding: 0; color: #202122; }
         
-        /* --- HEADER SINTA STYLE --- */
+        /* Container dibuat responsif */
+        .container { 
+            background: white; 
+            border: 1px solid #a2a9b1; 
+            padding: 20px; 
+            max-width: 900px; 
+            margin: 20px auto; 
+            box-sizing: border-box;
+        }
+
+        h1 { font-family: 'Linux Libertine', Georgia, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2em; }
+        .sub { font-size: 0.8em; margin-bottom: 20px; color: #54595d; }
+
+        /* --- INFOBOX (Desktop: Kanan, Mobile: Tengah) --- */
+        .infobox { 
+            border: 1px solid #a2a9b1; 
+            background-color: #f8f9fa; 
+            float: right; 
+            width: 280px; 
+            margin-left: 15px; 
+            padding: 5px; 
+            font-size: 0.9em; 
+            border-collapse: collapse;
+        }
+        .infobox-title { text-align: center; font-weight: bold; background: #cedff2; padding: 5px; }
+        .infobox img { width: 100%; height: auto; display: block; }
+
+        /* --- HEADER SINTA (Responsif) --- */
         .sinta-header {
             background-color: #002147;
             color: white;
@@ -22,62 +49,47 @@
             height: 65px;
             box-sizing: border-box;
         }
+
         .sinta-logo-area { display: flex; align-items: center; gap: 10px; }
         .sinta-logo-circle {
-            width: 35px; height: 35px; background: white; border-radius: 50%;
+            width: 35px; height: 35px; background: #ffffff; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-weight: bold; color: #002147; border: 2px solid #ffcc00;
         }
-        .sinta-title h1 { font-size: 16px; margin: 0; text-transform: uppercase; color: white; border:none; padding:0; }
+        .sinta-title h1 { border: none; font-size: 16px; color: white; margin: 0; text-transform: uppercase; }
         .sinta-title p { margin: 0; font-size: 9px; color: #ffcc00; font-weight: bold; }
 
+        /* Navigasi */
         .sinta-nav { display: flex; gap: 20px; }
         .sinta-nav a { color: white; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; }
-        
-        .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+
+        /* Hamburger (Hanya HP) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
         .hamburger span { width: 25px; height: 3px; background: white; }
 
-        /* --- ARTIKEL CONTAINER (Wikipedia Style) --- */
-        .container { 
-            background: white; 
-            border: 1px solid #a2a9b1; 
-            padding: 30px; 
-            max-width: 900px; 
-            margin: 20px auto; 
-            box-sizing: border-box;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+        /* Daftar Isi & Lainnya */
+        .toc { border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; display: inline-block; margin: 20px 0; font-size: 0.9em; }
+        p { line-height: 1.6; margin: 0.8em 0; }
+        h2 { border-bottom: 1px solid #a2a9b1; font-size: 1.5em; margin-top: 1.5em; font-family: 'Linux Libertine', Georgia, serif; font-weight: normal; }
 
-        h1 { font-family: 'Linux Libertine', Georgia, serif; border-bottom: 1px solid #a2a9b1; margin-bottom: 5px; font-weight: normal; font-size: 2.2em; }
-        .sub { font-size: 0.8em; margin-bottom: 20px; color: #54595d; }
-
-        /* INFOBOX */
-        .infobox { 
-            border: 1px solid #a2a9b1; 
-            background-color: #f8f9fa; 
-            float: right; 
-            width: 280px; 
-            margin-left: 20px; 
-            padding: 5px; 
-            font-size: 0.9em; 
-            border-collapse: collapse;
-        }
-        .infobox-title { text-align: center; font-weight: bold; background: #cedff2; padding: 8px; font-size: 1.1em; }
-        .infobox img { width: 100%; height: auto; display: block; border-bottom: 1px solid #a2a9b1; }
-
-        .toc { border: 1px solid #a2a9b1; background: #f8f9fa; padding: 15px; display: inline-block; margin: 20px 0; font-size: 0.9em; min-width: 200px; }
-        p { line-height: 1.7; margin: 0.8em 0; text-align: justify; }
-        h2 { border-bottom: 1px solid #a2a9b1; font-size: 1.6em; margin-top: 1.5em; font-family: 'Linux Libertine', Georgia, serif; font-weight: normal; }
-
-        /* --- FOOTER --- */
-        footer { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 15px; margin-top: 40px; font-size: 0.8em; color: #54595d; }
-
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- MEDIA QUERY (Kunci Mobile Support) --- */
         @media screen and (max-width: 768px) {
-            .container { margin: 10px; padding: 20px; }
-            .infobox { float: none; width: 100%; margin: 0 0 20px 0; }
+            .container { margin: 10px; padding: 15px; }
             
+            /* Infobox pindah ke tengah artikel */
+            .infobox { 
+                float: none; 
+                width: 100%; 
+                margin: 0 0 20px 0; 
+            }
+
             .hamburger { display: flex; }
+
             .sinta-nav {
                 display: none;
                 flex-direction: column;
@@ -85,9 +97,11 @@
                 top: 65px; left: 0; width: 100%;
                 background: #002147;
                 padding: 10px 0;
+                text-align: center;
             }
+
             .sinta-nav.active { display: flex; }
-            .sinta-nav a { padding: 15px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .sinta-nav a { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         }
     </style>
 </head>
@@ -101,55 +115,55 @@
             <p>SCIENCE AND TECHNOLOGY INDEX OF EVOLUTION</p>
         </div>
     </div>
+
     <div class="hamburger" onclick="toggleMenu()">
         <span></span><span></span><span></span>
     </div>
+
     <nav class="sinta-nav" id="mainNav">
-        <a href="index.html" style="color: #ffcc00;">Beranda</a>
+        <a href="index.html">Beranda</a>
         <a href="authors.html">Author</a>
         <a href="sources.html">Sources</a>
     </nav>
 </header>
 
 <div class="container">
-    <a href="#" style="float:right; color:#0645ad; font-size:0.8em; text-decoration:none;">[ Sunting ]</a>
+    <a href="#" style="float:right; color:#0645ad; font-size:0.8em;">Sunting sumber</a>
     <h1>Homo Tripodus</h1>
-    <div class="sub">Selamat datang di FJK Research Gate, database evolusi terverifikasi.</div>
+    <div class="sub">Dari FJK research Gate, ensiklopedia bebas</div>
 
     <table class="infobox">
         <tr><th colspan="2" class="infobox-title">Homo Tripodus</th></tr>
-        <tr><td colspan="2" style="text-align:center;"><img src="https://via.placeholder.com/280x350?text=Fosil+Homo+Tripodus" alt="Fosil Homo Tripodus"></td></tr>
-        <tr><td colspan="2" style="text-align:center; font-size: 0.8em; padding: 8px; color: #555;"><i>Rekonstruksi kerangka spesimen HT-01 ditemukan di Situs Hoaxen (2024).</i></td></tr>
-        <tr><th align="left" style="padding:5px;">Status:</th><td>Punah (Fosil)</td></tr>
-        <tr><th align="left" style="padding:5px;">Era:</th><td>Pleistosen Tengah</td></tr>
-        <tr><th align="left" style="padding:5px;">Penemu:</th><td>Kurniawan, F.</td></tr>
-        <tr><th align="left" style="padding:5px;">Lokasi:</th><td>Situs Hoaxen-Vort</td></tr>
+        <tr><td colspan="2" style="text-align:center;"><img src="fosil.jpg" alt="Fosil"></td></tr>
+        <tr><td colspan="2" style="text-align:center; font-size: 0.8em; padding: 5px;"><i>Rekonstruksi fosil (2024)</i></td></tr>
+        <tr><th align="left">Status:</th><td>Punah (Fosil)</td></tr>
+        <tr><th align="left">Klasifikasi:</th><td>Hominid</td></tr>
+        <tr><th align="left">Lokasi:</th><td>Situs Hoaxen-Vort</td></tr>
     </table>
 
-    <p><b>Homo Tripodus</b> (Manusia Berkaki Tiga) adalah temuan subspesies hominid yang merevolusi teori antropologi modern. Spesies ini diidentifikasi memiliki struktur panggul unik yang memungkinkan tumbuhnya anggota gerak ketiga (<i>Pedis Tertius</i>) pada bagian dorsal panggul.</p>
+    <p><b>Homo Tripodus</b> adalah subspesies hominid yang hidup sekitar 300.000 tahun yang lalu. Penemuan ini mengguncang dunia paleontologi modern.</p>
 
     <div class="toc">
         <b>Daftar isi</b>
         <ol>
-            <li>Karakteristik Biologis</li>
-            <li>Distribusi Geografis</li>
-            <li>Teori Kepunahan</li>
+            <li>Anatomi</li>
+            <li>Kepunahan</li>
+            <li>Jejak Vestigial</li>
         </ol>
     </div>
 
-    <h2>Karakteristik Biologis</h2>
-    <p>Analisis biomekanik menunjukkan bahwa kaki ketiga berfungsi sebagai penstabil energi tinggi saat melakukan navigasi di medan curam. Struktur ini tidak dimiliki oleh <i>Homo erectus</i> maupun <i>Homo sapiens</i>, menjadikannya anomali evolusi yang sangat langka.</p>
+    <h2>Anatomi</h2>
+    <p>Berbeda dengan <i>Homo sapiens</i>, spesies ini memiliki kaki ketiga fungsional sebagai penyeimbang statis saat berburu.</p>
 
-    <h2>Distribusi Geografis</h2>
-    <p>Sebagian besar sisa-sisa fosil ditemukan di wilayah Asia Tenggara, khususnya di gua-gua karst yang memiliki struktur batuan kapur tinggi. Hal ini menunjukkan bahwa lingkungan tersebut sangat mendukung cara gerak tripodal.</p>
+    <h2>Kepunahan</h2>
+    <p>Diyakini akibat revolusi tekstil; penggunaan celana menyulitkan pergerakan kaki ketiga.</p>
 
-    <h2>Teori Kepunahan</h2>
-    <p>Teori utama menyebutkan bahwa perubahan iklim drastis dan kemunculan teknologi pakaian pelindung menjadi faktor utama. Individu dengan struktur kaki ketiga mengalami hambatan mobilitas yang signifikan saat mulai menggunakan proteksi tubuh kompleks, menyebabkan mereka kalah bersaing dalam seleksi alam.</p>
+    <h2>Jejak Vestigial</h2>
+    <p>Manusia modern masih memiliki sisa evolusi berupa <b>tulang ekor</b>.</p>
 
-    <footer>
-        Halaman Beranda Utama. Terakhir diperbarui pada 08 Januari 2026. <br>
-        Seluruh data di bawah pengawasan <b>Institute of Paleontological Anomalies</b>.
-    </footer>
+    <div style="background: #f8f9fa; border: 1px solid #a2a9b1; padding: 10px; margin-top: 30px; font-size: 0.8em;">
+        Halaman ini terakhir diubah pada 1 April 2024.
+    </div>
 </div>
 
 <script>
