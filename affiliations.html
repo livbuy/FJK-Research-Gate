@@ -6,69 +6,48 @@
     <title>Authors Detail - FJK Research Gate</title>
     <style>
         
-    /* Dasar Header */
-    .sinta-header {
-        background-color: #002147;
-        color: white;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        font-family: Arial, sans-serif;
-    }
+   /* Perbaikan Posisi Header */
+.sinta-header {
+    position: relative;
+    z-index: 9999; /* Pastikan header paling depan */
+}
 
-    .sinta-logo-area { display: flex; align-items: center; gap: 12px; }
-    
-    .sinta-logo-circle {
-        width: 35px; height: 35px; background: white; border-radius: 50%;
-        color: #002147; display: flex; align-items: center; 
-        justify-content: center; font-weight: bold; border: 2px solid #ffcc00;
-    }
+/* Sembunyikan Hamburger di Laptop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 10000;
+}
+.hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
 
-    /* Menu Desktop */
-    .sinta-nav { display: flex; gap: 20px; }
-    .sinta-nav a { 
-        color: white; text-decoration: none; 
-        font-size: 13px; font-weight: 600; text-transform: uppercase; 
-    }
+@media screen and (max-width: 768px) {
+    .hamburger { display: flex; } /* Munculkan di HP */
 
-    /* Tombol Hamburger (Sembunyi di Laptop) */
-    .hamburger {
-        display: none;
+    .sinta-nav {
+        display: none; /* Sembunyikan default di HP */
         flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
-    }
-    .hamburger span { width: 25px; height: 3px; background: white; border-radius: 2px; }
-
-    /* --- RESPONSIVE UNTUK HP --- */
-    @media screen and (max-width: 768px) {
-        .hamburger { display: flex; } /* Munculkan garis tiga */
-
-        .sinta-nav {
-            display: none; /* Sembunyikan menu menyamping */
-            flex-direction: column;
-            position: absolute;
-            top: 60px; left: 0; width: 100%;
-            background: #002147;
-            padding: 10px 0;
-            border-top: 1px solid #ffffff22;
-        }
-
-        /* Saat menu aktif (diklik) */
-        .sinta-nav.active { display: flex; }
-
-        .sinta-nav a {
-            padding: 15px;
-            border-bottom: 1px solid #ffffff11;
-            width: 100%;
-            text-align: center;
-        }
+        position: absolute;
+        top: 100%; /* Pas di bawah header */
+        left: 0;
+        width: 100%;
+        background-color: #002147;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
+    /* Ini yang membuat menu muncul */
+    .sinta-nav.active {
+        display: flex !important;
+    }
+
+    .sinta-nav a {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+}
        .sinta-header {
     background-color: #002147; /* Biru Tua SINTA */
     color: white;
@@ -182,13 +161,13 @@
 <header class="sinta-header">
     <div class="sinta-logo-area">
         <div class="sinta-logo-circle">FJK</div>
-        <div style="line-height: 1.2;">
+        <div class="sinta-text">
             <div style="font-weight: bold; font-size: 16px;">FJK Research Gate</div>
             <div style="font-size: 10px; color: #ffcc00;">AUTHORS DIRECTORY</div>
         </div>
     </div>
 
-    <div class="hamburger" onclick="toggleMenu()">
+    <div class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
@@ -196,8 +175,8 @@
 
     <nav class="sinta-nav" id="mainNav">
         <a href="index.html">Beranda</a>
-        <a href="authors.html" style="color: #ffcc00;">Author</a>
-        <a href="#">Affiliations</a>
+        <a href="authors.html">Author</a>
+        <a href="affiliations.html" style="color: #ffcc00;">Affiliations</a>
         <a href="#">Registration</a>
     </nav>
 </header>
@@ -223,6 +202,16 @@
 </div>
 
 <script>
+
+function toggleMenu() {
+    var nav = document.getElementById("mainNav");
+    // Menambah atau menghapus class 'active' saat diklik
+    nav.classList.toggle("active");
+    
+    // Opsional: Log untuk memastikan tombol jalan
+    console.log("Menu di-klik!");
+}
+
     
     function toggleMenu() {
         const nav = document.getElementById("mainNav");
